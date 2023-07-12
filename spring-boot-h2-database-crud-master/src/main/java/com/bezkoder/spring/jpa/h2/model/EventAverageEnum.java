@@ -1,10 +1,12 @@
 package com.bezkoder.spring.jpa.h2.model;
 
 public enum EventAverageEnum {
-	PASS("Pass", 200, 1),
+	ATTACK("Attack", 200, 1),
 	SHOOT("Shoot", 30, 1),
-	ASSIST("Assist", 90, 1),
-	Score("Score", 60, 1)
+	TURNOVER("Turnover", 90, 1),
+	Score("Score", 60, 1),
+	FOUL("Foul", 61, 1),
+	Wide("Wide", 88, 1)
 	;
 	
 	private String name;

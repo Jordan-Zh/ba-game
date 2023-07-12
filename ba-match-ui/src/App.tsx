@@ -13,21 +13,21 @@ export default function App() {
     const [isShowMultiple, setIsShowMultiple] = useState<boolean>(true);
     const [initLoading, setInitLoading] = useState(true);
 
-    const URL_BASE = 'http://localhost';
+    /*const URL_BASE = 'http://localhost';
     const URL_EVENT_LIST = URL_BASE+'/api/loadData';
     const URL_SAVE_EVENT = URL_BASE +'/api/createEvent';
     const URL_CLEAN_DATA = URL_BASE +'/api/deleteAllData';
     const URL_EXPORT_DATA = URL_BASE +'/api/export';
     const URL_GAME_START = URL_BASE +'/api/gameStart';
-    const URL_LOAD_GAME_TIMER = URL_BASE +'/api/loadGameTimer';
+    const URL_LOAD_GAME_TIMER = URL_BASE +'/api/loadGameTimer';*/
 
 
-    /*const URL_EVENT_LIST = '../api/loadData';
+    const URL_EVENT_LIST = '../api/loadData';
     const URL_SAVE_EVENT = '../api/createEvent';
     const URL_CLEAN_DATA = '../api/deleteAllData';
     const URL_EXPORT_DATA = '../api/export';
     const URL_GAME_START = '../api/gameStart';
-    const URL_LOAD_GAME_TIMER = '../api/loadGameTimer';*/
+    const URL_LOAD_GAME_TIMER = '../api/loadGameTimer';
 
     const TEAM_HOME = 'HOME';
     const TEAM_AWAY = 'AWAY';
@@ -50,9 +50,9 @@ export default function App() {
 
 
     const [startTime, setStartTime] = useState(0);
-    const [timerHour, setTimerHour] = useState('');
-    const [timerMinute, setTimerMinute] = useState('');
-    const [timerSecond, setTimerSecond] = useState('');
+    const [timerHour, setTimerHour] = useState('00');
+    const [timerMinute, setTimerMinute] = useState('00');
+    const [timerSecond, setTimerSecond] = useState('00');
 
     const [currentTimerMinutes, setCurrentTimerMinutes] = useState(0);
     const [currentTimerSeconds, setCurrentTimerSeconds] = useState(0);
@@ -324,8 +324,8 @@ export default function App() {
         return team == TEAM_HOME ? homeTeam : awayTeam;
     }
 
-    const doPass = (team: String) => {
-        saveEvent(getTeamName(team), "Pass");
+    const doAttack = (team: String) => {
+        saveEvent(getTeamName(team), "Attack");
     };
 
     const doShoot = (team: String) => {
@@ -336,10 +336,18 @@ export default function App() {
         saveEvent(getTeamName(team), score);
     };
 
-    const doAssist = (team: String) => {
-        saveEvent(getTeamName(team), "Assist");
+    const doTurnover = (team: String) => {
+        saveEvent(getTeamName(team), "Turnover");
     };
 
+    const doFoul = (team: String) => {
+        saveEvent(getTeamName(team), "Foul");
+    };
+
+    const doWide = (team: String) => {
+        saveEvent(getTeamName(team), "Wide");
+    };
+    
     const changeMode = (mode) => {
         if (mode == 1) {
             setVideoSpan(16);
@@ -361,54 +369,55 @@ export default function App() {
             https://gs-files.oss-cn-hongkong.aliyuncs.com/okr/test/file/2021/07/01/haiwang.mp4 <hr></hr>
 
 
-            <Button onClick={() => changeMode(1)}>Video Mode</Button>
-            <Button onClick={() => changeMode(2)}>Timer Mode</Button>
-
 
             <Row className="BoardHead">
-                <div>GAA in-game Performance Analytics Dashboard</div>
+                <Col span={12} style={{ display: 'flex', justifyContent: 'flex-start', fontSize:'24px' }}>GAA in-game Performance Analytics Dashboard</Col>
+                <Col span={12} style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                    <Button className="marginRight20px" onClick={() => changeMode(1)}>Video Mode</Button>
+                    <Button className="marginRight20px" onClick={() => changeMode(2)}>Timer Mode</Button>
+                    </Col>
             </Row>
 
             <Row>
                 <Col span={8}>
                     <Row>
                         <div>
-                            <div>
-                                <label>Home:</label>
-                                <Input
-                                    size="small"
-                                    value={homeTeam}
-                                    onChange={homeTeamChange}
-                                />
+                            <label>Home:</label>
+                            <Input
+                                style={{ width: '100px' }}
+                                className="marginRight20px"
+                                value={homeTeam}
+                                onChange={homeTeamChange}
+                            />
 
-                                <label>Away:</label>
-                                <Input
-                                    size="small"
-                                    value={awayTeam}
-                                    onChange={awayTeamChange}
-                                />
 
-                                <Button onClick={() => cleanData()}>Clean Data</Button>
-                                <Button onClick={() => exportData()}>Export Data</Button>
+                            <label>Away:</label>
+                            <Input
+                                style={{ width: '100px' }}
+                                value={awayTeam}
+                                onChange={awayTeamChange}
+                            />
+
+                            <br />
+                            <div style={{ float: 'right' }}>
+                                <Button className="marginRight20px marginTop10px" size="small" onClick={() => cleanData()}>Clean Data</Button>
+                                <Button className="marginTop10px" size="small" onClick={() => exportData()}>Export Data</Button>
                             </div>
+                         </div>
 
+                        <div>
                             <Line
                                 data={chartData}
+                                width={350}
                                 height={260}
                                 seriesField='team'
                                 xField="minutes"
                                 yField="score"
                                 point={{ size: 5, shape: 'diamon' }}
                                 color={['#19CDD7', '#DDB27C']}
-                            />
+                                />
+                        </div>
 
-                           </div>
-                    </Row>
-
-                    <Row>
-                        <Col span={12}></Col>
-                        <Col span={3}>Home</Col>
-                        <Col span={3}>Away</Col>
                     </Row>
 
                     <Row>
@@ -416,11 +425,11 @@ export default function App() {
                     </Row>
                 </Col>
 
-                <Col>
+                <Col offset={1}>
                     <Row>
                         <Col span={timerSpan}>
                             <div>
-                                <div>
+                                <div style={{ marginTop: '50px', marginBottom: '50px', fontSize: '64px', fontWeight:'600' }}>
                                     <span>{timerHour}</span>
                                     <span>:</span>
                                     <span>{timerMinute}</span>
@@ -439,13 +448,13 @@ export default function App() {
                         <Row>
                             <Col span={videoSpan}>
                                 <Input
-                                    size="large" placeholder="Video Source"
+                                    className="videoSourceClass"
+                                    placeholder="Video Source"
                                     value={inpValue} 
                                     onChange={showInpValue} 
                                     onPressEnter={showInpValue2}
-                                /></Col>
-                            <Col span={videoSpan}>
-                                <Button onClick={() => videoMethod("Change Source")}>Change Source</Button>
+                                    />
+                                    <Button onClick={() => videoMethod("Change Source")}>Change Source</Button>
                             </Col>
                         </Row>
 
@@ -498,8 +507,8 @@ export default function App() {
                         </Row>
                     </div>
 
-                    <Row>
-                        <Col>
+                    <Row style={{ marginTop: 10}}>
+                        <Col style={{ marginRight: 20 }}>
                             <div className="eventTableClass">
                                 <Table columns={columns} dataSource={tableData}
                                     pagination={false} bordered
@@ -510,30 +519,42 @@ export default function App() {
 
                         <Col>
                             <div>
-                                <Row>
+                                <Row style={{ marginBottom: 10 }}>
                                     <Col span={12}>HOME</Col>
                                     <Col span={12}>AWAY</Col>
                                 </Row>
-                                <Row>
-                                    <Col span={12}><Button onClick={() => doPass(TEAM_HOME)}>Pass</Button></Col>
-                                    <Col span={12}><Button onClick={() => doPass(TEAM_AWAY)}>Pass</Button></Col>
+                                <Row style={{ marginBottom: 5 }}>
+                                    <Col span={12} ><Button style={{ background: '#3e930b', color: 'white', width: '80px', marginRight: '10px' }} onClick={() => doAttack(TEAM_HOME)}>Attack</Button></Col>
+                                    <Col span={12}><Button style={{ background: '#3e930b', color: 'white', width: '80px' }} onClick={() => doAttack(TEAM_AWAY)}>Attack</Button></Col>
                                 </Row>
-                                <Row>
-                                    <Col span={12}><Button onClick={() => doAssist(TEAM_HOME)}>Assist</Button></Col>
-                                    <Col span={12}><Button onClick={() => doAssist(TEAM_AWAY)}>Assist</Button></Col>
+                                <Row style={{ marginBottom: 5 }}>
+                                    <Col span={12}><Button style={{ background: '#3e930b', color: 'white', width: '80px', marginRight: '10px' }} onClick={() => doShoot(TEAM_HOME)}>Shoot</Button></Col>
+                                    <Col span={12}><Button style={{ background: '#3e930b', color: 'white', width: '80px' }} onClick={() => doShoot(TEAM_AWAY)}>Shoot</Button></Col>
                                 </Row>
-                                <Row>
-                                    <Col span={12}><Button onClick={() => doShoot(TEAM_HOME)}>Shoot</Button></Col>
-                                    <Col span={12}><Button onClick={() => doShoot(TEAM_AWAY)}>Shoot</Button></Col>
+                                <Row style={{ marginBottom: 5 }}>
+                                    <Col span={12}><Button style={{ background: '#3e930b', color: 'white', width: '80px', marginRight: '10px' }} onClick={() => doScore(TEAM_HOME, 'Score1')}>Point</Button></Col>
+                                    <Col span={12}><Button style={{ background: '#3e930b', color: 'white', width: '80px' }} onClick={() => doScore(TEAM_AWAY, 'Score1')}>Point</Button></Col>
                                 </Row>
-                                <Row>
-                                    <Col span={12}><Button onClick={() => doScore(TEAM_HOME, 'Score1')}>1 Score</Button></Col>
-                                    <Col span={12}><Button onClick={() => doScore(TEAM_AWAY, 'Score1')}>1 Score</Button></Col>
+                                <Row style={{ marginBottom: 5 }}>
+                                    <Col span={12}><Button style={{ background: '#3e930b', color: 'white', width: '80px', marginRight: '10px' }} onClick={() => doScore(TEAM_HOME, 'Score3')}>Goal</Button></Col>
+                                    <Col span={12}><Button style={{ background: '#3e930b', color: 'white', width: '80px' }} onClick={() => doScore(TEAM_AWAY, 'Score3')}>Goal</Button></Col>
                                 </Row>
-                                <Row>
-                                    <Col span={12}><Button onClick={() => doScore(TEAM_HOME, 'Score3')}>3 Score</Button></Col>
-                                    <Col span={12}><Button onClick={() => doScore(TEAM_AWAY, 'Score3')}>3 Score</Button></Col>
+
+                                <Row style={{ marginBottom: 5 }}>
+                                    <Col span={12}><Button style={{ background: '#3e930b', color: 'white', width: '80px', marginRight: '10px' }} onClick={() => doTurnover(TEAM_HOME)}>Turnover</Button></Col>
+                                    <Col span={12}><Button style={{ background: '#3e930b', color: 'white', width: '80px' }} onClick={() => doTurnover(TEAM_AWAY)}>Turnover</Button></Col>
                                 </Row>
+
+                                <Row style={{ marginBottom: 5 }}>
+                                    <Col span={12}><Button style={{ background: '#3e930b', color: 'white', width: '80px', marginRight: '10px' }} onClick={() => doFoul(TEAM_HOME)}>Foul</Button></Col>
+                                    <Col span={12}><Button style={{ background: '#3e930b', color: 'white', width: '80px' }} onClick={() => doFoul(TEAM_AWAY)}>Foul</Button></Col>
+                                </Row>
+
+                                <Row style={{ marginBottom: 5 }}>
+                                    <Col span={12}><Button style={{ background: '#3e930b', color: 'white', width: '80px', marginRight: '10px' }} onClick={() => doWide(TEAM_HOME)}>Wide</Button></Col>
+                                    <Col span={12}><Button style={{ background: '#3e930b', color: 'white', width: '80px' }} onClick={() => doWide(TEAM_AWAY)}>Wide</Button></Col>
+                                </Row>
+
                             </div>
                         </Col>
                     </Row>

@@ -1,6 +1,8 @@
 .App {
     font-family: sans-serif;
     text-align: center;
+    margin-left:20px;
+    margin-right:20px;
 }
 
 .App-logo {
@@ -13,6 +15,7 @@
     font-weight: 500;
     background-color:darkgreen;
     color:white;
+    margin-bottom:20px;
 }
 
 .chartClass{
@@ -30,6 +33,22 @@
 .videoRowClass {
 
 }
+
+.marginRight20px {
+    margin-right: 20px;
+}
+
+
+.marginTop10px {
+    margin-top: 10px;
+}
+
+.videoSourceClass {
+    width: 250px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+}
+
 
 
 
