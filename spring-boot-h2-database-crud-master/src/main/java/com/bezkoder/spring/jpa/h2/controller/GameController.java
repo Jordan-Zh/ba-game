@@ -175,13 +175,6 @@ public class GameController {
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	
-	public static void main(String[] args) {
-		long secs = 3800;
-//		 str=String.format("Hi,%s %s %s", "小超","是个","大帅哥");
-		String hour = String.format("0%d", secs/3600);
-		System.out.println(hour);
-	}
-	
 	private Map<String, Object> processEvents(List<GameEvent> allEvents, String homeTeam, String awayTeam) {
 		Map<String, Object> resultlMap = new HashMap<>();
 

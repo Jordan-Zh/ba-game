@@ -1,19 +1,19 @@
 package com.bezkoder.spring.jpa.h2.model;
 
 public enum EventAverageEnum {
-	ATTACK("Attack", 200, 1),
-	SHOOT("Shoot", 30, 1),
-	TURNOVER("Turnover", 90, 1),
-	Score("Score", 60, 1),
-	FOUL("Foul", 61, 1),
-	Wide("Wide", 88, 1)
+	ATTACK("Attack", 28.5, 1),
+	SHOOT("Shoot", 21.5, 1),
+	TURNOVER("Turnover", 23, 1),
+	Score("Score", 13.5, 1),
+	FOUL("Foul", 17, 1),
+	Wide("Wide", 10, 1)
 	;
 	
 	private String name;
-	private int averageAmount;
+	private double averageAmount;
 	private int count;
 	
-	EventAverageEnum(String name, int averageAmount, int count){
+	EventAverageEnum(String name, double averageAmount, int count){
 		this.name = name;
 		this.averageAmount = averageAmount;
 		this.count = count;
@@ -27,11 +27,12 @@ public enum EventAverageEnum {
 		this.name = name;
 	}
 
-	public int getAverageAmount() {
+	
+	public double getAverageAmount() {
 		return averageAmount;
 	}
 
-	public void setAverageAmount(int averageAmount) {
+	public void setAverageAmount(double averageAmount) {
 		this.averageAmount = averageAmount;
 	}
 

@@ -2,7 +2,7 @@ package com.bezkoder.spring.jpa.h2.model;
 
 public class AverageData {
 	private String event;
-	private int averageAmount;
+	private double averageAmount;
 	private int homeTeamAmount;
 	private int awayTeamAmount;
 	public String getEvent() {
@@ -11,10 +11,10 @@ public class AverageData {
 	public void setEvent(String event) {
 		this.event = event;
 	}
-	public int getAverageAmount() {
+	public double getAverageAmount() {
 		return averageAmount;
 	}
-	public void setAverageAmount(int averageAmount) {
+	public void setAverageAmount(double averageAmount) {
 		this.averageAmount = averageAmount;
 	}
 	public int getHomeTeamAmount() {

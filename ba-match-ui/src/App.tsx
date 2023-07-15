@@ -13,21 +13,21 @@ export default function App() {
     const [isShowMultiple, setIsShowMultiple] = useState<boolean>(true);
     const [initLoading, setInitLoading] = useState(true);
 
-    /*const URL_BASE = 'http://localhost';
+    const URL_BASE = 'http://localhost';
     const URL_EVENT_LIST = URL_BASE+'/api/loadData';
     const URL_SAVE_EVENT = URL_BASE +'/api/createEvent';
     const URL_CLEAN_DATA = URL_BASE +'/api/deleteAllData';
     const URL_EXPORT_DATA = URL_BASE +'/api/export';
     const URL_GAME_START = URL_BASE +'/api/gameStart';
-    const URL_LOAD_GAME_TIMER = URL_BASE +'/api/loadGameTimer';*/
+    const URL_LOAD_GAME_TIMER = URL_BASE +'/api/loadGameTimer';
 
 
-    const URL_EVENT_LIST = '../api/loadData';
+    /*const URL_EVENT_LIST = '../api/loadData';
     const URL_SAVE_EVENT = '../api/createEvent';
     const URL_CLEAN_DATA = '../api/deleteAllData';
     const URL_EXPORT_DATA = '../api/export';
     const URL_GAME_START = '../api/gameStart';
-    const URL_LOAD_GAME_TIMER = '../api/loadGameTimer';
+    const URL_LOAD_GAME_TIMER = '../api/loadGameTimer';*/
 
     const TEAM_HOME = 'HOME';
     const TEAM_AWAY = 'AWAY';
