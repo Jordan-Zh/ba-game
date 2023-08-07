@@ -13,21 +13,22 @@ export default function App() {
     const [isShowMultiple, setIsShowMultiple] = useState<boolean>(true);
     const [initLoading, setInitLoading] = useState(true);
 
+    /*
     const URL_BASE = 'http://localhost';
     const URL_EVENT_LIST = URL_BASE+'/api/loadData';
     const URL_SAVE_EVENT = URL_BASE +'/api/createEvent';
     const URL_CLEAN_DATA = URL_BASE +'/api/deleteAllData';
     const URL_EXPORT_DATA = URL_BASE +'/api/export';
     const URL_GAME_START = URL_BASE +'/api/gameStart';
-    const URL_LOAD_GAME_TIMER = URL_BASE +'/api/loadGameTimer';
+    const URL_LOAD_GAME_TIMER = URL_BASE +'/api/loadGameTimer';*/
 
 
-    /*const URL_EVENT_LIST = '../api/loadData';
+    const URL_EVENT_LIST = '../api/loadData';
     const URL_SAVE_EVENT = '../api/createEvent';
     const URL_CLEAN_DATA = '../api/deleteAllData';
     const URL_EXPORT_DATA = '../api/export';
     const URL_GAME_START = '../api/gameStart';
-    const URL_LOAD_GAME_TIMER = '../api/loadGameTimer';*/
+    const URL_LOAD_GAME_TIMER = '../api/loadGameTimer';
 
     const TEAM_HOME = 'HOME';
     const TEAM_AWAY = 'AWAY';
@@ -362,14 +363,6 @@ export default function App() {
     // There are many properties and methods, please refer to the documentation ...
     return (
         <div className="App">
-            https://gs-files.oss-cn-hongkong.aliyuncs.com/okr/prod/file/2021/08/31/540p.mp4 <hr></hr>
-
-            https://www.dofactory.com/media/movie.mp4 <hr></hr>
-
-            https://gs-files.oss-cn-hongkong.aliyuncs.com/okr/test/file/2021/07/01/haiwang.mp4 <hr></hr>
-
-
-
             <Row className="BoardHead">
                 <Col span={12} style={{ display: 'flex', justifyContent: 'flex-start', fontSize:'24px' }}>GAA in-game Performance Analytics Dashboard</Col>
                 <Col span={12} style={{ display: 'flex', justifyContent: 'flex-end' }}>
@@ -422,6 +415,20 @@ export default function App() {
 
                     <Row>
                         <Table columns={averageColumns} dataSource={averageTableData} pagination={false} />
+                        <div style={{ fontSize: 8, textAlign: 'left' }}>
+                            Key indicators average get from:
+
+                            <p>
+                            <a href="https://www.tandfonline.com/doi/full/10.1080/24748668.2018.1517291?casa_token=SMNO2o8g780AAAAA%3AjD07mdF24CPI3Rnul-ilODEC0Ts0zJ3PpaIkfxiEOCNGYp602d2KedBOC84AMb5voa8Nc58C7NyWQg">
+                            McGuigan, K., Hughes, M. and Martin, D., 2018. Performance indicators in club level Gaelic football. International Journal of Performance Analysis in Sport, 18(5), pp.780-795.
+                                </a>
+                             </p>
+                            <p>
+                            <a href="https://www.tandfonline.com/doi/full/10.1080/24748668.2018.1501992?casa_token=9qMIyDVlUCgAAAAA%3Axu9Wj4zWMLxVeP9MPFetNSAqAH3H6xRZgvrcPNmWPo7mm-SshfzyWy1adwUGY0_YR2LVPTW6uRw_NA">
+                            Allister, A., Byrne, P.J., Nulty, C.D. and Jordan, S., 2018. Game-related statistics which discriminate elite senior Gaelic football teams according to game outcome and final score difference. International Journal of Performance Analysis in Sport, 18(4), pp.622-632.
+                                </a>
+                            </p>
+                        </div>
                     </Row>
                 </Col>
 
