@@ -480,12 +480,10 @@ export default function App() {
                                     onQualityChange={onQualityChange}
                                     option={{
                                         videoSrc:
-                                            "https://gs-files.oss-cn-hongkong.aliyuncs.com/okr/prod/file/2021/08/31/540p.mp4",
+                                            "https://capstone1.oss-cn-hongkong.aliyuncs.com/Derry_Donegal.mp4",
                                         width: 550,
                                         height: 320,
                                         theme,
-                                        poster:
-                                            "https://gs-files.oss-cn-hongkong.aliyuncs.com/okr/prod/file/2021/08/31/1080pp.png",
                                         language: "en",
                                         isShowMultiple,
                                         pausePlacement: "center",
@@ -493,17 +491,17 @@ export default function App() {
                                             {
                                                 name: "FHD",
                                                 url:
-                                                    "https://gs-files.oss-cn-hongkong.aliyuncs.com/okr/prod/file/2021/08/31/720p.mp4"
+                                                    "https://capstone1.oss-cn-hongkong.aliyuncs.com/Derry_Donegal.mp4"
                                             },
                                             {
                                                 name: "HD",
                                                 url:
-                                                    "https://gs-files.oss-cn-hongkong.aliyuncs.com/okr/prod/file/2021/08/31/540p.mp4"
+                                                    "https://capstone1.oss-cn-hongkong.aliyuncs.com/Derry_Donegal.mp4"
                                             },
                                             {
                                                 name: "SD",
                                                 url:
-                                                    "https://gs-files.oss-accelerate.aliyuncs.com/okr/prod/file/2021/08/31/1630377480138360p.mp4"
+                                                    "https://capstone1.oss-cn-hongkong.aliyuncs.com/Derry_Donegal.mp4"
                                             }
                                         ],
                                         isToast: true,
